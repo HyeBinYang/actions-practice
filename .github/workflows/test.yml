@@ -3,6 +3,8 @@ name: Test
 on: push
 
 env:
+  CACHED_DEPENDENCY_PATHS: ${{ github.workspace }}/node_modules
+  CACHED_BUILD_PATHS: ${{ github.workspace }}/.next
   BUILD_CACHE_KEY: ${{ github.sha }}
 
 jobs:
@@ -10,8 +12,33 @@ jobs:
     name: Install Dependencies
     uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml@master
 
-  Test_job:
-    runs-on: ubuntu-latest
+  job_build:
+    name: Build
     needs: Reusable_Install_Dependencies_Job
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - run: echo ${{ needs.Reusable_Install_Dependencies_Job.outputs.dependency_cache_key }}
+      - name: Check out current commit (${{ github.sha }})
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+
+      - name: Check dependency cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.CACHED_DEPENDENCY_PATHS }}
+          key: ${{ needs.Reusable_Install_Dependencies_Job.outputs.dependency_cache_key }}
+
+      - name: Check build cache
+        uses: actions/cache@v2
+        id: cache_built_packages
+        with:
+          path: ${{ env.CACHED_BUILD_PATHS }}
+          key: ${{ env.BUILD_CACHE_KEY }}
+
+      - name: Test packages
+        if: steps.cache_built_packages.outputs.cache-hit == ''
+        run: npm run test
+    outputs:
+      dependency_cache_key: ${{ needs.Reusable_Install_Dependencies_Job.outputs.dependency_cache_key }}

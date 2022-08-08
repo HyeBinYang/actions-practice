@@ -33,4 +33,4 @@ jobs:
         run: npm install
     outputs:
       dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
-      run: echo "::set-output name=dependency_cache_key::${{ steps.compute_lockfile_hash.outputs.hash }}"
+      # run: echo "::set-output name=dependency_cache_key::${{ steps.compute_lockfile_hash.outputs.hash }}"
