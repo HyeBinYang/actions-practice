@@ -9,5 +9,5 @@ jobs:
       - name: Check out current commit
         uses: actions/checkout@v2
 
-      - uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml
+      - uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml@master
       - run: npm test
