@@ -3,11 +3,13 @@ name: Test
 on: push
 
 jobs:
-  job:
+  job1:
+    uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml@master
+
+  job2:
     runs-on: ubuntu-latest
     steps:
       - name: Check out current commit
         uses: actions/checkout@v2
 
-      - uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml@master
       - run: npm test
