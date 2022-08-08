@@ -8,7 +8,7 @@ env:
 jobs:
   Reusable_Install_Dependencies_Job:
     name: Install Dependencies
-    uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml@${{ github.sha }}
+    uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml@master
 
   Test_job:
     runs-on: ubuntu-latest
