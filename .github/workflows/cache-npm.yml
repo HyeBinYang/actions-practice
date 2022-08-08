@@ -1,7 +1,6 @@
 name: Caching with npm
 
-on:
-  workflow_call:
+on: workflow_call
 
 env:
   CACHED_DEPENDENCY_PATHS: ${{ github.workspace }}/node_modules
@@ -9,7 +8,6 @@ env:
 
 jobs:
   job_install_dependencies:
-    name: Install Dependencies
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

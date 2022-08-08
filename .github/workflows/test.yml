@@ -2,12 +2,16 @@ name: Test
 
 on: push
 
-jobs:
-  job1:
-    uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml@master
+env:
+  BUILD_CACHE_KEY: ${{ github.sha }}
 
-  job2:
+jobs:
+  Reusable_Install_Dependencies_Job:
+    name: Install Dependencies
+    uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml@${{ github.sha }}
+
+  Test_job:
     runs-on: ubuntu-latest
-    needs: job1
+    needs: Reusable_Install_Dependencies_Job
     steps:
-      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
+      - run: npm test
