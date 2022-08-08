@@ -6,7 +6,7 @@ jobs:
   job_install_npm_dependencies:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out current commit (${{ github.sha }})
+      - name: Check out current commit
         uses: actions/checkout@v2
 
       - uses: actions-practice/.github/workflows/cache-npm.yml
