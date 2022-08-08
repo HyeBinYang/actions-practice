@@ -10,4 +10,10 @@ describe("Factorial 함수", () => {
       factorial(-1);
     }).toThrow("음수는 안됩니다!");
   });
+
+  it("0일때 1이 나와야함", () => {
+    expect(() => {
+      factorial(0);
+    }).toThrow(1);
+  });
 });
