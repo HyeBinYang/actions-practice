@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: job1
     steps:
-      - run: npm test
+      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
