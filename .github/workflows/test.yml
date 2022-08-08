@@ -14,5 +14,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: Reusable_Install_Dependencies_Job
     steps:
-      - run: npm ci
-      - run: npm test
+      - run: echo ${{ needs.Reusable_Install_Dependencies_Job.outputs.dependency_cache_key }}
