@@ -3,11 +3,11 @@ name: Test
 on: push
 
 jobs:
-  job_install_npm_dependencies:
+  job:
     runs-on: ubuntu-latest
     steps:
       - name: Check out current commit
         uses: actions/checkout@v2
 
-      - uses: ./.github/workflows/cache-npm.yml
+      - uses: HyeBinYang/actions-practice/.github/workflows/cache-npm.yml
       - run: npm test
