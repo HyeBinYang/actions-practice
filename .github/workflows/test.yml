@@ -2,7 +2,7 @@ name: "Test"
 
 on:
   push:
-    branches: ["break-tests"]
+    branches: ["master", "break-tests"]
 
 jobs:
   build:
