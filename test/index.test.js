@@ -12,8 +12,6 @@ describe("Factorial 함수", () => {
   });
 
   it("0일때 1이 나와야함", () => {
-    expect(() => {
-      factorial(0);
-    }).toThrow(1);
+    expect(factorial(0)).toBe(1);
   });
 });
