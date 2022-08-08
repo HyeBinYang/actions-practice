@@ -16,7 +16,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
 
       - name: Compute dependency cache key
         id: compute_lockfile_hash
@@ -31,7 +33,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache_dependencies.outputs.cache-hit == ''
-        run: npm install
+        run: npm ci
 
     outputs:
       dependency_cache_key: ${{ steps.compute_lockfile_hash.outputs.hash }}
@@ -46,7 +48,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
 
       - name: Check dependency cache
         uses: actions/cache@v2
@@ -67,7 +71,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
 
       - name: Check dependency cache
         uses: actions/cache@v2
