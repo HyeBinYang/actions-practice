@@ -52,7 +52,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.CACHED_DEPENDENCY_PATHS }}
-          key: ${{ needs.outputs.dependency_cache_key }}
+          key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
 
       - name: Test packages
         run: npm run test
@@ -73,7 +73,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.CACHED_DEPENDENCY_PATHS }}
-          key: ${{ needs.outputs.dependency_cache_key }}
+          key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
 
       - name: Check build cache
         uses: actions/cache@v2
